@@ -35,7 +35,7 @@
                     <label for="title1" class="layui-form-label">标题</label>
                     <div class="layui-input-block">
                       <input type="text" id="title1" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
-                      <input type="hidden" name="uid" value="${user.id}">
+                      <input type="hidden" name="aid" value="${admin.id}">
                     </div>
                   </div>
                 </div>

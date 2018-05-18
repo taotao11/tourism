@@ -1,5 +1,6 @@
 package com.ssm.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ssm.entity.Submit;
 import com.ssm.mapper.SubmitMapper;
 import com.ssm.service.SubmitService;
@@ -17,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubmitServiceImap extends ServiceImpl<SubmitMapper, Submit> implements SubmitService {
 
+    @Override
+    public Page<Submit> selectByUid(long uid) {
+        return null;
+    }
 }

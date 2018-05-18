@@ -3,10 +3,7 @@ package com.ssm.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ssm.entity.Activity;
-import com.ssm.entity.Img;
-import com.ssm.entity.Jindian;
 import com.ssm.service.ActivityService;
-import com.ssm.service.ImgService;
 import com.ssm.utils.UploadFlies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,8 +31,7 @@ import java.util.List;
 public class ActivityController {
     @Autowired
     private ActivityService activityService;
-    @Autowired
-    private ImgService imgService;
+
 
     /**
      * 添加活动
@@ -83,10 +78,10 @@ public class ActivityController {
                                 .eq("title",activity.getTitle())
                                 .and()
                                 .eq("uid",activity.getUid()));
-                        Img img = new Img();
-                        img.setaId(jindians.get(0).getId());
-                        img.setImgUrl("res/aimg/" + name);
-                        imgService.insert(img);
+//                        Img img = new Img();
+//                        img.setaId(jindians.get(0).getId());
+//                        img.setImgUrl("res/aimg/" + name);
+//                        imgService.insert(img);
                     }else {
                         mv.addObject("error","活动添加失败!!");
                     }

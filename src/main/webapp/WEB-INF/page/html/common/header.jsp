@@ -5,23 +5,7 @@
     <a class="fly-logo" href="/">
       <img src="${pageContext.request.contextPath}/res/images/logo.png" alt="layui">
     </a>
-    <div class="fly-column-right" style="margin-right: 250px;margin-top: 9px;color: #333333">
-      <form class="layui-form" action="${pageContext.request.contextPath}/selectJ">
-        <div class="layui-input-inline" style="width: 100px">
-          <select class="layui-input" lay-verify="required"  name="type" >
-            <option value="0" >景点</option>
-            <option value="1" >活动</option>
-            <option value="2">话题</option>
-          </select>
-        </div>
-        <div class="layui-input-inline">
-          <input type="text" class="layui-input" name="seach" placeholder="请输入标题关键字">
-        </div>
-        <div class="layui-input-inline">
-          <button class="layui-btn">搜索</button>
-        </div>
-      </form>
-    </div>
+
     <ul class="layui-nav fly-nav-user">
 
       <c:if test="${user == null}">
@@ -38,9 +22,9 @@
       </c:if>
       <c:if test="${user != null}">
         <li class="layui-nav-item">
-          <a class="fly-nav-avatar" href="${pageContext.request.contextPath}/userIndex?id=${user.id}">
+          <a class="fly-nav-avatar" href="${pageContext.request.contextPath}/userIndex?uid=${user.id}">
             <cite class="layui-hide-xs">${user.name}</cite>
-            <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：手拉手 会员"></i>
+            <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：xxx公司 员工"></i>
             <i class="layui-badge fly-badge-vip layui-hide-xs">VIP</i>
             <c:if test="${user.url == null}">
               <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">

@@ -1,5 +1,6 @@
 package com.ssm.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ssm.entity.Work;
 import com.ssm.mapper.WorkMapper;
 import com.ssm.service.WorkService;
@@ -17,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class WorkServiceImap extends ServiceImpl<WorkMapper, Work> implements WorkService {
 
+    @Override
+    public Page<Work> selectByUid(long uid) {
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
 package com.ssm.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ssm.entity.Levea;
 import com.ssm.mapper.LeveaMapper;
 import com.ssm.service.LeveaService;
@@ -17,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class LeveaServiceImap extends ServiceImpl<LeveaMapper, Levea> implements LeveaService {
 
+    @Override
+    public Page<Levea> selectByUid(long uid) {
+        return null;
+    }
 }

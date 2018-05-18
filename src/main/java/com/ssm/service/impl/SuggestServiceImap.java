@@ -1,5 +1,6 @@
 package com.ssm.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ssm.entity.Suggest;
 import com.ssm.mapper.SuggestMapper;
 import com.ssm.service.SuggestService;
@@ -17,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SuggestServiceImap extends ServiceImpl<SuggestMapper, Suggest> implements SuggestService {
 
+    @Override
+    public Page<Suggest> selectByUid(long uid) {
+        return null;
+    }
 }

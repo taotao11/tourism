@@ -33,7 +33,26 @@ public class Suggest extends Model<Suggest> {
      * 状态 0 以创建 1 回复
      */
     private Integer stuats;
+    @TableField(exist = false)
+    private String uName;
+    @TableField(exist = false)
+    private String aName;
 
+    public String getuName() {
+        return uName;
+    }
+
+    public void setuName(String uName) {
+        this.uName = uName;
+    }
+
+    public String getaName() {
+        return aName;
+    }
+
+    public void setaName(String aName) {
+        this.aName = aName;
+    }
 
     public Long getId() {
         return id;

@@ -256,12 +256,12 @@
         </dependency>
         <!-- 导入oracle包 -->
         <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>12.1.0.1-atlassian-hosted</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>ojdbc6</artifactId>-->
+            <!--<version>12.1.0.1-atlassian-hosted</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
         <!--mybatis-puls mybatis 增强工具-->
         <dependency>
             <groupId>com.baomidou</groupId>

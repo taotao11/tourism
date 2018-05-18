@@ -21,15 +21,9 @@
       </a>
     </li>
     <li class="layui-nav-item">
-      <a href="${pageContext.request.contextPath}/userIndex?id=${user.id}">
+      <a href="${pageContext.request.contextPath}/userIndex?uid=${user.id}">
         <i class="layui-icon">&#xe612;</i>
-        用户中心
-      </a>
-    </li>
-    <li class="layui-nav-item">
-      <a href="${pageContext.request.contextPath}/follow/selectAll?id=${user.id}">
-        <i class="layui-icon">&#xe612;</i>
-        我的关注
+        员工中心
       </a>
     </li>
     <li class="layui-nav-item layui-this">

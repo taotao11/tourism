@@ -8,9 +8,10 @@
         <li><a href="${pageContext.request.contextPath}/user/selectAllUser/1">用户</a></li>
         <li><a href="${pageContext.request.contextPath}/web/addNotice">添加公告</a></li>
         <li><a href="${pageContext.request.contextPath}/notice/selectAll?current=1">公告</a></li>
-        <li><a href="${pageContext.request.contextPath}/jList?current=0&&type=1">景点</a></li>
-        <li><a href="${pageContext.request.contextPath}/aList?current=0&&type=1">活动<span class="layui-badge-dot"></span></a></li>
-        <li><a href="${pageContext.request.contextPath}/tList?current=0&&type=1">话题</a></li>
+        <li><a href="${pageContext.request.contextPath}/levea/selectByStu/0?current=1">请假审批</a></li>
+        <li><a href="${pageContext.request.contextPath}/submit/selectByStu/0?current=1">报销<span class="layui-badge-dot"></span></a></li>
+        <li><a href="${pageContext.request.contextPath}/work/selectByStu/0?current=1">工作回复</a></li>
+        <li><a href="${pageContext.request.contextPath}/suggest/selectByStu/0?current=1">反馈</a></li>
       </c:if>
     </ul>
   </div>

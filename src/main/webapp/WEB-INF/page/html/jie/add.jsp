@@ -19,9 +19,10 @@
     <div class="layui-form-pane">
       <div class="layui-tab layui-tab-brief" lay-filter="user">
         <ul class="layui-tab-title">
-          <li class="layui-this">景点添加<!-- 编辑帖子 --></li>
-          <li>活动添加</li>
-          <li>话题添加</li>
+          <li class="layui-this">请假申请<!-- 编辑帖子 --></li>
+          <li>报销申请</li>
+          <li>工作汇报</li>
+          <li>建议反馈</li>
         </ul>
         <div class="layui-tab-content" style="padding: 20px 0;">
           <c:if test="${error != null}">
@@ -30,12 +31,12 @@
           <c:if test="${success != null}">
             <div class="layui-form-mid layui-word-aux">${success}</div>
           </c:if>
-          <%--景点开始--%>
+          <%--请假--%>
           <div class="layui-form layui-tab-item layui-show">
-            <form id="form0" action="${pageContext.request.contextPath}/jindian/addJD" method="post" enctype="multipart/form-data">
+            <form id="form0" action="${pageContext.request.contextPath}/levea/addL" method="post">
               <div class="layui-row layui-col-space15 layui-form-item">
                 <div class="layui-col-md9">
-                  <label for="L_title" class="layui-form-label">标题</label>
+                  <label for="L_title" class="layui-form-label">请假原因</label>
                   <div class="layui-input-block">
                     <input type="text" id="L_title" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
                     <input type="hidden" name="uid" value="${user.id}">
@@ -44,121 +45,89 @@
               </div>
               <div class="layui-row layui-col-space15 layui-form-item">
                 <div class="layui-col-md4">
-                  <label for="L_address" class="layui-form-label">地点</label>
+                  <label for="L_address" class="layui-form-label">开始时间</label>
                   <div class="layui-input-block">
-                    <input type="text" id="L_address" name="address" placeholder="请输入地点" required lay-verify="required"
+                    <input type="text" id="L_address" name="time" placeholder="请输入请假时间" required lay-verify="required"
                            autocomplete="off" class="layui-input">
                   </div>
                 </div>
               </div>
               <div class="layui-row layui-col-space15 layui-form-item">
                 <div class="layui-col-md4">
-                  <label for="L_file" class="layui-form-label">选择文件</label>
+                  <label for="lenght" class="layui-form-label">请假天数</label>
                   <div class="layui-input-block">
-                    <input type="file" id="L_file" name="file"  class="layui-input">
+                    <input type="text" id="lenght" name="length" placeholder="请输入天数" required lay-verify="required"
+                           autocomplete="off" class="layui-input">
                   </div>
                 </div>
               </div>
-              <div class="layui-form-item layui-form-text">
-                <div class="layui-input-block">
-                  <textarea id="L_reason" name="reason" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
-                </div>
-              </div>
+              <%--<div class="layui-row layui-col-space15 layui-form-item">--%>
+                <%--<div class="layui-col-md4">--%>
+                  <%--<label for="L_file" class="layui-form-label">选择文件</label>--%>
+                  <%--<div class="layui-input-block">--%>
+                    <%--<input type="file" id="L_file" name="file"  class="layui-input">--%>
+                  <%--</div>--%>
+                <%--</div>--%>
+              <%--</div>--%>
               <div class="layui-form-item">
-                <button class="layui-btn" >立即发布</button>
+                <button class="layui-btn" >立即申请</button>
               </div>
             </form>
           </div>
-            <%--活动开始--%>
+            <%--报销--%>
           <div class="layui-form layui-tab-item ">
-            <form id="form1" action="${pageContext.request.contextPath}/activity/addA" method="post" enctype="multipart/form-data">
+            <form id="form1" action="${pageContext.request.contextPath}/submit/addSub" method="post" >
               <div class="layui-row layui-col-space15 layui-form-item">
                 <div class="layui-col-md9">
-                  <label for="title" class="layui-form-label">标题</label>
+                  <label for="title" class="layui-form-label">报销说明</label>
                   <div class="layui-input-block">
                     <input type="text" id="title" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
                     <input type="hidden" name="uid" value="${user.id}">
-                    <input type="hidden" name="stuts" value="创建">
                   </div>
                 </div>
               </div>
               <div class="layui-row layui-col-space15 layui-form-item">
               <div class="layui-col-md4">
-                <label for="address" class="layui-form-label">地点</label>
+                <label for="address" class="layui-form-label">报销金额</label>
                 <div class="layui-input-block">
-                  <input type="text" id="address" name="address" placeholder="请输入地点" required lay-verify="required"
+                  <input type="number" id="address" name="money" placeholder="请输入金额" required lay-verify="required"
                          autocomplete="off" class="layui-input">
                 </div>
               </div>
-
             </div>
-              <div class="layui-row layui-col-space15 layui-form-item">
-                <div class="layui-col-md4">
-                  <label for="beginTime" class="layui-form-label">开始时间</label>
-                  <div class="layui-input-block">
-                    <input type="text" id="beginTime" name="time" required lay-verify="required"
-                           autocomplete="off" class="layui-input">
-                  </div>
-                </div>
-              </div>
-              <div class="layui-row layui-col-space15 layui-form-item">
-                <div class="layui-col-md4">
-                  <label for="dataLen" class="layui-form-label">活动时长</label>
-                  <div class="layui-input-block">
-                    <input type="number" id="dataLen" name="dataLen" placeholder="单位天" required lay-verify="required"
-                           autocomplete="off" class="layui-input">
-                  </div>
-                </div>
-              </div>
-              <div class="layui-row layui-col-space15 layui-form-item">
-                <div class="layui-col-md4">
-                  <label for="pLen" class="layui-form-label">活动人数</label>
-                  <div class="layui-input-block">
-                    <input type="number" id="pLen" name="pLen" placeholder="" required lay-verify="required"
-                           autocomplete="off" class="layui-input">
-                  </div>
-                </div>
-              </div>
-              <div class="layui-row layui-col-space15 layui-form-item">
-                <div class="layui-col-md4">
-                  <label for="file" class="layui-form-label">选择文件</label>
-                  <div class="layui-input-block">
-                    <input type="file" id="file" name="file"  class="layui-input">
-                  </div>
-                </div>
-              </div>
-              <div class="layui-form-item layui-form-text">
-                <div class="layui-input-block">
-                  <textarea id="reason" name="reason" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
-                </div>
-              </div>
               <div class="layui-form-item">
-                <button class="layui-btn" >立即发布</button>
+                <button class="layui-btn" >立即申请</button>
               </div>
             </form>
           </div>
-            <%--话题开始--%>
+            <%--工作汇报--%>
           <div class="layui-form layui-tab-item ">
-              <form id="form2" action="${pageContext.request.contextPath}/topic/add" method="post">
-                <div class="layui-row layui-col-space15 layui-form-item">
-                  <div class="layui-col-md9">
-                    <label for="title1" class="layui-form-label">标题</label>
-                    <div class="layui-input-block">
-                      <input type="text" id="title1" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
-                      <input type="hidden" name="uid" value="${user.id}">
-                    </div>
-                  </div>
-                </div>
+              <form id="form3" action="${pageContext.request.contextPath}/work/addW" method="post">
+                <input type="hidden" name="uid" value="${user.id}">
                 <div class="layui-form-item layui-form-text">
                   <div class="layui-input-block">
-                    <textarea name="reason" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
+                    <textarea name="content" required lay-verify="required" placeholder="工作汇报内容" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
                   </div>
                 </div>
                 <div class="layui-form-item">
-                  <button class="layui-btn" >立即发布</button>
+                  <button class="layui-btn" >立即汇报</button>
                 </div>
               </form>
             </div>
+          <%--建议反馈--%>
+          <div class="layui-form layui-tab-item ">
+            <form id="form2" action="${pageContext.request.contextPath}/suggest/addSug" method="post">
+              <input type="hidden" name="uid" value="${user.id}">
+              <div class="layui-form-item layui-form-text">
+                <div class="layui-input-block">
+                  <textarea name="title" required lay-verify="required" placeholder="请输入建议反馈" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <button class="layui-btn" >立即反馈</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -176,6 +145,10 @@
         //执行一个laydate实例
         laydate.render({
             elem: '#beginTime' //指定元素
+            ,type:'datetime'
+        });
+        laydate.render({
+            elem: '#L_address' //指定元素
             ,type:'datetime'
         });
     });

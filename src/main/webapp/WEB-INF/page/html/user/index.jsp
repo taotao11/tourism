@@ -14,11 +14,11 @@
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
 <jsp:include page="../common/column.jsp"></jsp:include>
-<c:if test="${jindians == null}">
-  <script  type="text/javascript">
-      window.self.location = "${pageContext.request.contextPath}/userIndex?id=${user.id}";
-  </script >
-</c:if>
+<%--<c:if test="${jindians == null}">--%>
+  <%--<script  type="text/javascript">--%>
+      <%--window.self.location = "${pageContext.request.contextPath}/userIndex?id=${user.id}";--%>
+  <%--</script >--%>
+<%--</c:if>--%>
 <div class="layui-container fly-marginTop fly-user-main">
   <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
     <li class="layui-nav-item">
@@ -28,15 +28,9 @@
       </a>
     </li>
     <li class="layui-nav-item layui-this">
-      <a href="${pageContext.request.contextPath}/userIndex?id=${user.id}">
+      <a href="${pageContext.request.contextPath}/userIndex?uid=${user.id}">
         <i class="layui-icon">&#xe612;</i>
-        用户中心
-      </a>
-    </li>
-    <li class="layui-nav-item">
-      <a href="${pageContext.request.contextPath}/follow/selectAll?id=${user.id}">
-        <i class="layui-icon">&#xe612;</i>
-        我的关注
+        员工中心
       </a>
     </li>
     <li class="layui-nav-item">
@@ -63,63 +57,169 @@
     <div class="fly-msg" style="margin-top: 15px;">
       您的邮箱尚未验证，这比较影响您的帐号安全，<a href="activate.html">立即去激活？</a>
     </div>
+
     -->
     <div class="layui-tab layui-tab-brief" lay-filter="user">
       <ul class="layui-tab-title" id="LAY_mine">
-        <li data-type="mine-jie" lay-id="index" class="layui-this">景点（<span>${jindians.size()}</span>）</li>
-        <li data-type="collection" data-url="/collection/find/" lay-id="collection">活动（<span>${activities.size()}</span>）</li>
-        <li data-type="collection" data-url="/collection/find/" lay-id="collection">话题（<span>${topics.size()}</span>）</li>
+        <li data-type="mine-jie" lay-id="index" class="layui-this">请假记录（<span>${levea.size()}</span>）</li>
+        <li data-type="collection" data-url="/collection/find/" lay-id="collection">报销记录（<span>${submit.size()}</span>）</li>
+        <li data-type="collection" data-url="/collection/find/" lay-id="collection">工作记录（<span>${work.size()}</span>）</li>
+        <li data-type="collection" data-url="/collection/find/" lay-id="collection">反馈记录（<span>${suggest.size()}</span>）</li>
       </ul>
       <div class="layui-tab-content" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
-          <ul class="mine-view jie-row">
-            <c:forEach items="${jindians}" var="jindian">
-              <li>
-                <a class="jie-title" href="${pageContext.request.contextPath}/detail/${jindian.id}" target="_blank">${jindian.title}</a>
-                <i>${jindian.beginTime}</i>
-                <%--<em>10回复</em>--%>
-                <em>
-                      <a href="${pageContext.request.contextPath}/jindian/set?id=${jindian.id}&type=1">修改</a>
-                      <a href="${pageContext.request.contextPath}/jindian/delete?id=${jindian.id}&type=1">删除</a>
-                </em>
-              </li>
-            </c:forEach>
-          </ul>
-          <div id="LAY_page"></div>
+          <div class="layui-tab-item layui-show">
+            <table class="layui-table" lay-skin="line">
+              <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+              </colgroup>
+              <thead>
+              <tr>
+                <th>请假内容</th>
+                <th>请假天数</th>
+                <th>时间</th>
+                <th>处理人</th>
+                <th>处理理由</th>
+                <th>状态</th>
+              </tr>
+              </thead>
+              <tbody>
+              <c:forEach items="${levea}" var="l">
+                <tr>
+                  <td>${l.title}</td>
+                  <td>${l.createTime}</td>
+                  <td>${l.length}&nbsp;天</td>
+                  <td>${l.aid}</td>
+                  <td>${l.reason}</td>
+                  <td>
+                      ${l.type == 0 ? "等待处理" : ""}
+                      ${l.type == 1 ? "批准" : ""}
+                      ${l.type == 2 ? "不批准" : ""}
+                  </td>
+                </tr>
+              </c:forEach>
+
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="layui-tab-item">
-          <ul class="mine-view jie-row">
-            <c:forEach items="${activities}" var="activity">
-              <li>
-                <a class="jie-title" href="${pageContext.request.contextPath}/activity/${activity.id}" target="_blank">${activity.title}</a>
-                <i>${activity.beginTime}</i>
-                <%--<em>10回复</em>--%>
+          <div class="layui-tab-item layui-show">
+            <table class="layui-table" lay-skin="line">
+              <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+              </colgroup>
+              <thead>
+              <tr>
+                <th>报销内容</th>
+                <th>报销金额</th>
+                <th>时间</th>
+                <th>处理人</th>
+                <th>处理理由</th>
+                <th>状态</th>
+                <th>审核时间</th>
 
-                <em>
-                  <a class="" href="${pageContext.request.contextPath}/activity/set?id=${activity.id}&type=1">修改</a>
-                  <a href="${pageContext.request.contextPath}/activity/delete?id=${activity.id}&type=1">删除</a>
-                </em>
+              </tr>
+              </thead>
+              <tbody>
+              <c:forEach items="${submit}" var="l">
+                <tr>
+                  <td>${l.title}</td>
+                  <td>${l.money}&nbsp;元</td>
+                  <td>${l.createTime}</td>
 
-              </li>
-            </c:forEach>
-          </ul>
-          <div id="LAY_page1"></div>
+                  <td>${l.aid}</td>
+                  <td>${l.reason}</td>
+                  <td>
+                      ${l.type == 0 ? "等待处理" : ""}
+                      ${l.type == 1 ? "批准" : ""}
+                      ${l.type == 2 ? "不批准" : ""}
+                  </td>
+                  <td>${l.uplodTime}</td>
+                </tr>
+              </c:forEach>
+
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="layui-tab-item ">
-          <ul class="mine-view jie-row">
-            <c:forEach items="${topics}" var="topic">
-              <li>
-                <a class="jie-title" href="${pageContext.request.contextPath}/topic/${topic.id}" target="_blank">${topic.title}</a>
-                <i>${topic.creatTime}</i>
-                <%--<em>10回复</em>--%>
-                <em>
-                    <a href="${pageContext.request.contextPath}/topic/set?id=${topic.id}&type=1">修改</a>
-                    <a href="${pageContext.request.contextPath}/topic/delete?id=${topic.id}&type=1">删除</a>
-                </em>
-              </li>
-            </c:forEach>
-          </ul>
-          <div id="page"></div>
+          <div class="layui-tab-item layui-show">
+            <table class="layui-table" lay-skin="line">
+              <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+              </colgroup>
+              <thead>
+              <tr>
+                <th colspan="2">工作内容</th>
+                <th>时间</th>
+                <th>处理人</th>
+                <th>处理理由</th>
+                <th>状态</th>
+                <th>回复时间</th>
+              </tr>
+              </thead>
+              <tbody>
+              <c:forEach items="${work}" var="l">
+                <tr>
+                  <td colspan="2">${l.content}</td>
+                  <td>${l.createTime}</td>
+                  <td>${l.aid}</td>
+                  <td>${l.reason}</td>
+                  <td>
+                      ${l.stuats == 0 ? "等待回复" : ""}
+                      ${l.stuats== 1 ? "以回复" : ""}
+                  </td>
+                  <td>${l.updateTime}</td>
+                </tr>
+              </c:forEach>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="layui-tab-item ">
+          <div class="layui-tab-item layui-show">
+            <table class="layui-table" lay-skin="line">
+              <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+              </colgroup>
+              <thead>
+              <tr>
+                <th colspan="2">反馈内容</th>
+                <th>时间</th>
+                <th>处理人</th>
+                <th>处理理由</th>
+                <th>状态</th>
+                <th>回复时间</th>
+              </tr>
+              </thead>
+              <tbody>
+              <c:forEach items="${suggest}" var="l">
+                <tr>
+                  <td colspan="2">${l.title}</td>
+                  <td>${l.createTime}</td>
+                  <td>${l.aid}</td>
+                  <td>${l.reason}</td>
+                  <td>
+                      ${l.stuats == 0 ? "等待回复" : ""}
+                      ${l.stuats== 1 ? "以回复" : ""}
+                  </td>
+                  <td>${l.updateTime}</td>
+                </tr>
+              </c:forEach>
+
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

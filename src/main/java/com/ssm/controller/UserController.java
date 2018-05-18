@@ -3,9 +3,8 @@ package com.ssm.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.ssm.entity.Img;
+
 import com.ssm.entity.User;
-import com.ssm.service.ImgService;
 import com.ssm.service.UserService;
 import com.ssm.utils.UploadFlies;
 
@@ -38,8 +37,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private ImgService imgService;
 
     /**
      * 添加头像
@@ -71,18 +68,13 @@ public class UserController {
             if (isType){
                 try {
                     UploadFlies.uploadFile(file.getBytes(),path,name);
-
-                    List<Img> imgs = imgService.selectList(new EntityWrapper<Img>().eq("u_id",id));
-                    if (imgs.size() == 0){
-                        Img img = new Img();
-                        img.setuId(id);
-                        img.setImgUrl("res/uimg/" + name);
-                        imgService.insert(img);
-                    }else {
-                        imgs.get(0).setImgUrl("res/uimg/" + name);
-                        imgService.updateById(imgs.get(0));
+                    User user = new User();
+                    user.setUrl("res/uimg/" + name);
+                    user.setId(id);
+                    boolean update = userService.updateById(user);
+                    if (!update){
+                        mv.addObject("error","上传失败请重试");
                     }
-
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     mv.addObject("error",e.getMessage());
@@ -127,6 +119,8 @@ public class UserController {
             return mv;
         }
         user.setCreatTime(new Date());
+        //kpi 默认为0
+        user.setKpi(0);
        boolean isInsert =  userService.insert(user);
        if (isInsert){
            mv.addObject("message","注册成功,请登录！！！");
@@ -208,10 +202,7 @@ public class UserController {
         }
         User user = users.get(0);
         if (user.getPwd().equals(pwd)){
-            List<Img> imgs = imgService.selectList(new EntityWrapper<Img>().eq("u_id",user.getId()));
-            if (imgs.size() != 0) {
-            	user.setUrl(imgs.get(0).getImgUrl());
-			}
+
             session.setAttribute("user",user);
             mv.setViewName("/html/index");
         }else {
